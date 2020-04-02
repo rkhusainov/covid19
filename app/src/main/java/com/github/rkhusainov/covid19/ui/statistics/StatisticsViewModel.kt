@@ -1,4 +1,4 @@
-package com.github.rkhusainov.covid19.ui.main
+package com.github.rkhusainov.covid19.ui.statistics
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
