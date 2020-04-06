@@ -1,5 +1,6 @@
 package com.github.rkhusainov.covid19.ui.detail
 
+import android.content.Context
 import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Bundle
@@ -20,6 +21,7 @@ import com.github.mikephil.charting.utils.ColorTemplate
 import com.github.mikephil.charting.utils.MPPointF
 import com.github.rkhusainov.covid19.R
 import com.github.rkhusainov.covid19.data.model.ResponseItem
+import com.github.rkhusainov.covid19.ui.contract.HistoryClickListener
 import kotlinx.android.synthetic.main.fragment_pie_chart.*
 
 
@@ -27,6 +29,8 @@ class PieChartFragment : Fragment() {
 
     private lateinit var statistics: ResponseItem
     private lateinit var chart: PieChart
+    private lateinit var historyClickListener: HistoryClickListener
+
 
     companion object {
         private const val BUNDLE_KEY = "BUNDLE_KEY"
@@ -37,6 +41,14 @@ class PieChartFragment : Fragment() {
             val fragment = PieChartFragment()
             fragment.arguments = bundle
             return fragment
+        }
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+
+        if (context is HistoryClickListener) {
+            historyClickListener = context
         }
     }
 
@@ -58,6 +70,10 @@ class PieChartFragment : Fragment() {
         }
 
         setupPieChart()
+
+        history_button.setOnClickListener {
+            historyClickListener.openHistoryFragment(statistics.country!!)
+        }
     }
 
     private fun setupPieChart() {
@@ -112,6 +128,8 @@ class PieChartFragment : Fragment() {
         data.setValueTextColor(Color.BLACK)             // цвет текста значений
         data.setValueTypeface(Typeface.DEFAULT)         // шрифт текста значений
         chart.data = data
+
+        // перерисовать
         chart.invalidate()
     }
 

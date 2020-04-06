@@ -7,4 +7,8 @@ class CovidRepository : ICovidRepository {
     override suspend fun getStatistics(): StatisticsResponse {
         return ApiUtils.getApi().getStatistics()
     }
+
+    override suspend fun getHistory(country: String): StatisticsResponse {
+        return ApiUtils.getApi().getHistory(country)
+    }
 }

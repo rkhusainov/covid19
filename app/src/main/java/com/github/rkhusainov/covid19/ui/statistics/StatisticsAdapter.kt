@@ -40,7 +40,7 @@ class StatisticsAdapter(private val countryClickListener: CountryClickListener) 
         holder.itemView.deaths_text.text = statItem.deaths?.total.toString()
 
         holder.itemView.setOnClickListener {
-            countryClickListener.openHistoryFragment(statItem)
+            countryClickListener.openDetailFragment(statItem)
         }
     }
 }
