@@ -6,7 +6,7 @@ import com.github.rkhusainov.covid19.R
 import com.github.rkhusainov.covid19.data.model.ResponseItem
 import com.github.rkhusainov.covid19.ui.contract.CountryClickListener
 import com.github.rkhusainov.covid19.ui.contract.HistoryClickListener
-import com.github.rkhusainov.covid19.ui.detail.PieChartFragment
+import com.github.rkhusainov.covid19.ui.detail.DetailFragment
 import com.github.rkhusainov.covid19.ui.history.HistoryFragment
 
 class MainActivity : AppCompatActivity(), CountryClickListener, HistoryClickListener {
@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity(), CountryClickListener, HistoryClickList
     override fun openDetailFragment(statItem: ResponseItem) {
         supportFragmentManager
             .beginTransaction()
-            .replace(R.id.fragment_container, PieChartFragment.newInstance(statItem))
+            .replace(R.id.fragment_container, DetailFragment.newInstance(statItem))
             .addToBackStack(null)
             .commit()
     }

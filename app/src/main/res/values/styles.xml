@@ -8,18 +8,46 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="list_value_text">
+    <style name="TextValueList">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">@color/colorGray</item>
         <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="list_label_text">
+    <style name="TextLabelList">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">@color/colorGray</item>
         <item name="android:textStyle">normal</item>
+    </style>
+
+
+    <style name="TextTitle">
+        <item name="android:layout_gravity">center</item>
+        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Headline6
+        </item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="ImageIcon">
+        <item name="android:layout_gravity">center</item>
+        <item name="android:tint">@android:color/white</item>
+    </style>
+
+    <style name="TextCount">
+        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Headline3
+        </item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
+
+    <style name="LayoutStyle">
+        <item name="android:orientation">vertical</item>
+        <item name="android:padding">@dimen/dimen_16</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_margin">4dp</item>
     </style>
 
 </resources>
