@@ -20,6 +20,7 @@ import com.github.mikephil.charting.utils.ColorTemplate
 import com.github.rkhusainov.covid19.R
 import com.github.rkhusainov.covid19.data.model.ResponseItem
 import com.github.rkhusainov.covid19.ui.statistics.CovidViewModelFactory
+import kotlinx.android.synthetic.main.fragment_history.*
 
 
 class HistoryFragment : Fragment() {
@@ -55,6 +56,7 @@ class HistoryFragment : Fragment() {
 
         country = arguments!!.getString(COUNTRY_KEY)!!
 
+        country_text.text = country
         setupMVVM()
         viewModel.getHistory(country)
     }
@@ -91,7 +93,7 @@ class HistoryFragment : Fragment() {
         chart.animateX(1500)
 
         // получить легенду (возможно только после настройки данных)
-        val l: Legend = chart.legend;
+        val l: Legend = chart.legend
 
         // настройка легенды (ярлыков значений)
         l.form = Legend.LegendForm.LINE
@@ -175,7 +177,7 @@ class HistoryFragment : Fragment() {
 
         // переворачиваем массив, чтобы последние данные были в конце,
         // далее убираем дубликаты по дню
-        history = history.reversed().distinctBy { it.day }
+        history = history.distinctBy { it.day }.reversed()
 
         for (i in history.indices step calculatedStep) {
             entries.add(Entry(i.toFloat(), history[i].cases!!.active.toFloat()))

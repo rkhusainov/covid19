@@ -21,24 +21,16 @@
         style="@style/TextLabelList"
         android:layout_marginStart="8dp"
         android:text="@string/active"
-        app:layout_constraintRight_toLeftOf="@id/critical_label"
+        app:layout_constraintRight_toLeftOf="@id/recovered_label"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/country_text" />
-
-    <TextView
-        android:id="@+id/critical_label"
-        style="@style/TextLabelList"
-        android:text="@string/critical"
-        app:layout_constraintBaseline_toBaselineOf="@+id/active_label"
-        app:layout_constraintLeft_toRightOf="@id/active_label"
-        app:layout_constraintRight_toLeftOf="@id/recovered_label" />
 
     <TextView
         android:id="@+id/recovered_label"
         style="@style/TextLabelList"
         android:text="@string/recovered"
         app:layout_constraintBaseline_toBaselineOf="@+id/active_label"
-        app:layout_constraintLeft_toRightOf="@id/critical_label"
+        app:layout_constraintLeft_toRightOf="@id/active_label"
         app:layout_constraintRight_toLeftOf="@id/new_label" />
 
     <TextView
@@ -58,21 +50,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toRightOf="@id/new_label" />
 
-
     <TextView
         android:id="@+id/active_text"
         style="@style/TextValueList"
         app:layout_constraintEnd_toEndOf="@+id/active_label"
         app:layout_constraintStart_toStartOf="@+id/active_label"
         app:layout_constraintTop_toBottomOf="@id/active_label"
-        tools:text="100" />
-
-    <TextView
-        android:id="@+id/critical_text"
-        style="@style/TextValueList"
-        app:layout_constraintEnd_toEndOf="@+id/critical_label"
-        app:layout_constraintStart_toStartOf="@+id/critical_label"
-        app:layout_constraintTop_toBottomOf="@id/critical_label"
         tools:text="100" />
 
     <TextView

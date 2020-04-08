@@ -34,7 +34,6 @@ class StatisticsAdapter(private val countryClickListener: CountryClickListener) 
         val statItem: ResponseItem = statistics[position]
         holder.itemView.country_text.text = statItem.country
         holder.itemView.active_text.text = statItem.cases?.active.toString()
-        holder.itemView.critical_text.text = statItem.cases?.critical.toString()
         holder.itemView.recovered_text.text = statItem.cases?.recovered.toString()
         holder.itemView.new_text.text = statItem.cases?.new
         holder.itemView.deaths_text.text = statItem.deaths?.total.toString()
