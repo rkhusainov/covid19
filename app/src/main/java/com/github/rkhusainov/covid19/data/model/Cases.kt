@@ -5,24 +5,26 @@ import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 
 data class Cases(
-
-    @SerializedName("new") val new: Int,
+    @SerializedName("new") val new: String?,
     @SerializedName("active") val active: Int,
     @SerializedName("critical") val critical: Int,
     @SerializedName("recovered") val recovered: Int,
     @SerializedName("total") val total: Int
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
-        parcel.readInt(),
+        parcel.readString(),
         parcel.readInt(),
         parcel.readInt(),
         parcel.readInt(),
         parcel.readInt()
-    ) {
-    }
+    )
+
+    // геттер для поля "new" содержащий только число
+    val newIntCase: Int
+        get() = new!!.replace("\\D+", "").toInt()
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeInt(new)
+        parcel.writeString(new)
         parcel.writeInt(active)
         parcel.writeInt(critical)
         parcel.writeInt(recovered)

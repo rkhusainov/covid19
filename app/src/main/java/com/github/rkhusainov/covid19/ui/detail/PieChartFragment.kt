@@ -138,7 +138,7 @@ class PieChartFragment : Fragment() {
         entries.add(PieEntry(statistics.cases!!.active.toFloat(), getString(R.string.active)))
         entries.add(PieEntry(statistics.cases!!.critical.toFloat(), getString(R.string.critical)))
         entries.add(PieEntry(statistics.cases!!.recovered.toFloat(), getString(R.string.recovered)))
-        entries.add(PieEntry(statistics.cases!!.new.toFloat(), getString(R.string.new_cases)))
+        entries.add(PieEntry(statistics.cases!!.newIntCase.toFloat(), getString(R.string.new_cases)))
         entries.add(PieEntry(statistics.deaths!!.total.toFloat(), getString(R.string.deaths)))
         return entries
     }
