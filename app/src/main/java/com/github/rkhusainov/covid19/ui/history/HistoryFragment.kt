@@ -137,7 +137,7 @@ class HistoryFragment : Fragment() {
         rightAxis.isGranularityEnabled = false
 
         // настройка данных
-        val activeSet = LineDataSet(lineData(countryHistory), "Active")
+        val activeSet = LineDataSet(lineData(countryHistory), resources.getString(R.string.active))
 
         // настройка линий графика
         activeSet.color = ColorTemplate.getHoloBlue()

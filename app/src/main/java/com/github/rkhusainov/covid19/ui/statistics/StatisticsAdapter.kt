@@ -33,7 +33,7 @@ class StatisticsAdapter(private val countryClickListener: CountryClickListener) 
     override fun onBindViewHolder(holder: StatisticsHolder, position: Int) {
         val statItem: ResponseItem = statistics[position]
         holder.itemView.country_text.text = statItem.country
-        holder.itemView.active_text.text = statItem.cases?.active.toString()
+        holder.itemView.confirmed_text.text = statItem.cases?.total.toString()
         holder.itemView.recovered_text.text = statItem.cases?.recovered.toString()
         holder.itemView.new_text.text = statItem.cases?.new
         holder.itemView.deaths_text.text = statItem.deaths?.total.toString()

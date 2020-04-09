@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Covid19</string>
+    <string name="confirmed">Подтверждено</string>
+    <string name="active">Инфецировано</string>
+    <string name="critical">В критическом состоянии</string>
+    <string name="recovered">Выздоровело</string>
+    <string name="deaths">Умерло</string>
+    <string name="new_cases">За сутки</string>
+    <string name="covid19_chart">COVID-19 chart</string>
+    <string name="covid19_chart_spannable">"Covid-19 Chart\ndeveloped by Rinat Khusainov"</string>
+    <string name="history">История</string>
+
+</resources>

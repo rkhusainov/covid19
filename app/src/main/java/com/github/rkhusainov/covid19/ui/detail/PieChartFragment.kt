@@ -30,11 +30,9 @@ class PieChartFragment : Fragment() {
     private lateinit var chart: PieChart
     private val chartColors =
         mutableListOf(
-            rgb("#c12552"),
-            rgb("#6a961f"),
-            rgb("#ff6600"),
-            rgb("#b36435"),
-            rgb("#b36435")
+            rgb("#1976D2"),
+            rgb("#388E3C"),
+            rgb("#FBC02D")
         )
 
     companion object {
@@ -131,12 +129,6 @@ class PieChartFragment : Fragment() {
         val entries = arrayListOf<PieEntry>()
         entries.add(PieEntry(statistics.cases!!.active.toFloat(), getString(R.string.active)))
         entries.add(PieEntry(statistics.cases!!.recovered.toFloat(), getString(R.string.recovered)))
-        entries.add(
-            PieEntry(
-                statistics.cases!!.newIntCase.toFloat(),
-                getString(R.string.new_cases)
-            )
-        )
         entries.add(PieEntry(statistics.deaths!!.total.toFloat(), getString(R.string.deaths)))
         return entries
     }

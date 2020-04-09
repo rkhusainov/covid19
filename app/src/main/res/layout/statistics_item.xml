@@ -18,31 +18,31 @@
         tools:text="Country" />
 
     <TextView
-        android:id="@+id/active_label"
+        android:id="@+id/confirmed_label"
         style="@style/TextLabelList"
         android:layout_marginStart="8dp"
         android:textColor="@color/dark_red"
-        android:text="@string/active"
-        app:layout_constraintRight_toLeftOf="@id/recovered_label"
+        android:text="@string/confirmed"
+        app:layout_constraintRight_toLeftOf="@id/new_label"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/country_text" />
-
-    <TextView
-        android:id="@+id/recovered_label"
-        style="@style/TextLabelList"
-        android:text="@string/recovered"
-        android:textColor="@color/dark_green"
-        app:layout_constraintBaseline_toBaselineOf="@+id/active_label"
-        app:layout_constraintLeft_toRightOf="@id/active_label"
-        app:layout_constraintRight_toLeftOf="@id/new_label" />
 
     <TextView
         android:id="@+id/new_label"
         style="@style/TextLabelList"
         android:text="@string/new_cases"
         android:textColor="@color/dark_blue"
-        app:layout_constraintBaseline_toBaselineOf="@+id/active_label"
-        app:layout_constraintLeft_toRightOf="@id/recovered_label"
+        app:layout_constraintBaseline_toBaselineOf="@+id/confirmed_label"
+        app:layout_constraintLeft_toRightOf="@id/confirmed_label"
+        app:layout_constraintRight_toLeftOf="@id/recovered_label" />
+
+    <TextView
+        android:id="@+id/recovered_label"
+        style="@style/TextLabelList"
+        android:text="@string/recovered"
+        android:textColor="@color/dark_green"
+        app:layout_constraintBaseline_toBaselineOf="@+id/confirmed_label"
+        app:layout_constraintLeft_toRightOf="@id/new_label"
         app:layout_constraintRight_toLeftOf="@id/deaths_label" />
 
     <TextView
@@ -51,24 +51,16 @@
         android:layout_marginEnd="8dp"
         android:text="@string/deaths"
         android:textColor="@color/dark_yellow"
-        app:layout_constraintBaseline_toBaselineOf="@+id/active_label"
+        app:layout_constraintBaseline_toBaselineOf="@+id/confirmed_label"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/new_label" />
+        app:layout_constraintLeft_toRightOf="@id/recovered_label" />
 
     <TextView
-        android:id="@+id/active_text"
+        android:id="@+id/confirmed_text"
         style="@style/TextValueList"
-        app:layout_constraintEnd_toEndOf="@+id/active_label"
-        app:layout_constraintStart_toStartOf="@+id/active_label"
-        app:layout_constraintTop_toBottomOf="@id/active_label"
-        tools:text="100" />
-
-    <TextView
-        android:id="@+id/recovered_text"
-        style="@style/TextValueList"
-        app:layout_constraintEnd_toEndOf="@+id/recovered_label"
-        app:layout_constraintStart_toStartOf="@+id/recovered_label"
-        app:layout_constraintTop_toBottomOf="@id/recovered_label"
+        app:layout_constraintEnd_toEndOf="@+id/confirmed_label"
+        app:layout_constraintStart_toStartOf="@+id/confirmed_label"
+        app:layout_constraintTop_toBottomOf="@id/confirmed_label"
         tools:text="100" />
 
     <TextView
@@ -78,6 +70,14 @@
         app:layout_constraintStart_toStartOf="@+id/new_label"
         app:layout_constraintTop_toBottomOf="@id/new_label"
         tools:text="+100" />
+
+    <TextView
+        android:id="@+id/recovered_text"
+        style="@style/TextValueList"
+        app:layout_constraintEnd_toEndOf="@+id/recovered_label"
+        app:layout_constraintStart_toStartOf="@+id/recovered_label"
+        app:layout_constraintTop_toBottomOf="@id/recovered_label"
+        tools:text="100" />
 
     <TextView
         android:id="@+id/deaths_text"
