@@ -28,6 +28,13 @@
             motion:layout_constraintEnd_toEndOf="parent"
             motion:layout_constraintStart_toStartOf="parent" />
 
+        <Constraint
+            android:id="@+id/view_blur"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="invisible"
+            />
+
     </ConstraintSet>
 
     <ConstraintSet android:id="@+id/ending_set">
@@ -48,6 +55,14 @@
             motion:layout_constraintBottom_toTopOf="@id/button_chart"
             motion:layout_constraintEnd_toEndOf="parent"
             motion:layout_constraintStart_toEndOf="@id/button_pie_chart" />
+
+        <Constraint
+            android:id="@+id/view_blur"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="visible"
+            />
+
     </ConstraintSet>
 
 </MotionScene>

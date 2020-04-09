@@ -62,6 +62,10 @@ class DetailFragment : Fragment() {
             }
         }
 
+        motion_layout.setOnClickListener {
+            motion_layout.transitionToStart()
+        }
+
         button_pie_chart.setOnClickListener {
             countryClickListener.openPieChart(statistics)
         }
@@ -70,8 +74,5 @@ class DetailFragment : Fragment() {
             countryClickListener.openLineChart(statistics.country!!)
         }
 
-        motion_layout.setOnClickListener {
-            motion_layout.transitionToStart()
-        }
     }
 }

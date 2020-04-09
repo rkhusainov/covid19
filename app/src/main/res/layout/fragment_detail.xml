@@ -2,152 +2,172 @@
 <androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/motion_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/dimen_4"
-    android:id="@+id/motion_layout"
     app:layoutDescription="@xml/main_scene"
     tools:context=".ui.detail.DetailFragment">
 
-    <LinearLayout
-        android:id="@+id/layout_confirmed"
-        style="@style/LayoutStyle"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@color/light_red"
-        app:layout_constraintBottom_toTopOf="@+id/layout_recover"
-        app:layout_constraintEnd_toStartOf="@+id/layout_active"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="@dimen/dimen_4"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            style="@style/ImageIcon"
-            android:layout_width="82sp"
-            android:layout_height="82sp"
-            android:contentDescription="@string/confirmed"
-            android:src="@drawable/ic_virus"
-            android:tint="@color/dark_red" />
+        <LinearLayout
+            android:id="@+id/layout_confirmed"
+            style="@style/LayoutStyle"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@color/light_red"
+            app:layout_constraintBottom_toTopOf="@+id/layout_recover"
+            app:layout_constraintEnd_toStartOf="@+id/layout_active"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/text_confirmed"
-            style="@style/TextCount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/dark_red"
-            tools:text="1138" />
+            <ImageView
+                style="@style/ImageIcon"
+                android:layout_width="82sp"
+                android:layout_height="82sp"
+                android:contentDescription="@string/confirmed"
+                android:src="@drawable/ic_virus"
+                android:tint="@color/dark_red" />
 
-        <TextView
-            style="@style/TextTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/confirmed"
-            android:textColor="@color/dark_red" />
-    </LinearLayout>
+            <TextView
+                android:id="@+id/text_confirmed"
+                style="@style/TextCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/dark_red"
+                tools:text="1138" />
 
-    <LinearLayout
-        android:id="@+id/layout_active"
-        style="@style/LayoutStyle"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@color/light_blue"
-        app:layout_constraintBottom_toTopOf="@+id/layout_death"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/layout_confirmed"
-        app:layout_constraintTop_toTopOf="parent">
+            <TextView
+                style="@style/TextTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/confirmed"
+                android:textColor="@color/dark_red" />
+        </LinearLayout>
 
-        <ImageView
-            style="@style/ImageIcon"
-            android:layout_width="82sp"
-            android:layout_height="82sp"
-            android:contentDescription="@string/active"
-            android:src="@drawable/ic_patient"
-            android:tint="@color/dark_blue" />
+        <LinearLayout
+            android:id="@+id/layout_active"
+            style="@style/LayoutStyle"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@color/light_blue"
+            app:layout_constraintBottom_toTopOf="@+id/layout_death"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/layout_confirmed"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/text_active"
-            style="@style/TextCount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/dark_blue"
-            tools:text="1138" />
+            <ImageView
+                style="@style/ImageIcon"
+                android:layout_width="82sp"
+                android:layout_height="82sp"
+                android:contentDescription="@string/active"
+                android:src="@drawable/ic_patient"
+                android:tint="@color/dark_blue" />
 
-        <TextView
-            style="@style/TextTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/active"
-            android:textColor="@color/dark_blue" />
-    </LinearLayout>
+            <TextView
+                android:id="@+id/text_active"
+                style="@style/TextCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/dark_blue"
+                tools:text="1138" />
 
-    <LinearLayout
-        android:id="@+id/layout_recover"
-        style="@style/LayoutStyle"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@color/light_green"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/layout_death"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/layout_confirmed">
+            <TextView
+                style="@style/TextTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/active"
+                android:textColor="@color/dark_blue" />
 
-        <ImageView
-            style="@style/ImageIcon"
-            android:layout_width="82sp"
-            android:layout_height="82sp"
-            android:contentDescription="@string/recovered"
-            android:src="@drawable/ic_heart"
-            android:tint="@color/dark_green" />
+        </LinearLayout>
 
-        <TextView
-            android:id="@+id/text_recovered"
-            style="@style/TextCount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/dark_green"
-            tools:text="1138" />
+        <LinearLayout
+            android:id="@+id/layout_recover"
+            style="@style/LayoutStyle"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@color/light_green"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/layout_death"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layout_confirmed">
 
-        <TextView
-            style="@style/TextTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/recovered"
-            android:textColor="@color/dark_green" />
-    </LinearLayout>
+            <ImageView
+                style="@style/ImageIcon"
+                android:layout_width="82sp"
+                android:layout_height="82sp"
+                android:contentDescription="@string/recovered"
+                android:src="@drawable/ic_heart"
+                android:tint="@color/dark_green" />
 
-    <LinearLayout
-        android:id="@+id/layout_death"
-        style="@style/LayoutStyle"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@color/light_yellow"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/layout_recover"
-        app:layout_constraintTop_toBottomOf="@+id/layout_active">
+            <TextView
+                android:id="@+id/text_recovered"
+                style="@style/TextCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/dark_green"
+                tools:text="1138" />
 
-        <ImageView
-            style="@style/ImageIcon"
-            android:layout_width="82sp"
-            android:layout_height="82sp"
-            android:contentDescription="@string/deaths"
-            android:src="@drawable/ic_death"
-            android:tint="@color/dark_yellow" />
+            <TextView
+                style="@style/TextTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/recovered"
+                android:textColor="@color/dark_green" />
+        </LinearLayout>
 
-        <TextView
-            android:id="@+id/text_deaths"
-            style="@style/TextCount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/dark_yellow"
-            tools:text="1138" />
+        <LinearLayout
+            android:id="@+id/layout_death"
+            style="@style/LayoutStyle"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@color/light_yellow"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/layout_recover"
+            app:layout_constraintTop_toBottomOf="@+id/layout_active">
 
-        <TextView
-            style="@style/TextTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/deaths"
-            android:textColor="@color/dark_yellow" />
-    </LinearLayout>
+            <ImageView
+                style="@style/ImageIcon"
+                android:layout_width="82sp"
+                android:layout_height="82sp"
+                android:contentDescription="@string/deaths"
+                android:src="@drawable/ic_death"
+                android:tint="@color/dark_yellow" />
+
+            <TextView
+                android:id="@+id/text_deaths"
+                style="@style/TextCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/dark_yellow"
+                tools:text="1138" />
+
+            <TextView
+                style="@style/TextTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/deaths"
+                android:textColor="@color/dark_yellow" />
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.github.mmin18.widget.RealtimeBlurView
+        android:id="@+id/view_blur"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:realtimeBlurRadius="20dp"
+        app:realtimeOverlayColor="#8000" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/button_chart"
@@ -163,14 +183,12 @@
         android:id="@+id/button_pie_chart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_pie_chart_fill"
- />
+        android:src="@drawable/ic_pie_chart_fill" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/button_line_chart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_analytics_chart"
-        />
+        android:src="@drawable/ic_analytics_chart" />
 
 </androidx.constraintlayout.motion.widget.MotionLayout>
