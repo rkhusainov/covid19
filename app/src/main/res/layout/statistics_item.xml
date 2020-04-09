@@ -11,6 +11,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/country_background"
         android:padding="8dp"
+        android:textColor="@color/colorPrimaryDark"
         android:textAppearance="@style/TextAppearance.AppCompat.Headline"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -20,6 +21,7 @@
         android:id="@+id/active_label"
         style="@style/TextLabelList"
         android:layout_marginStart="8dp"
+        android:textColor="@color/dark_red"
         android:text="@string/active"
         app:layout_constraintRight_toLeftOf="@id/recovered_label"
         app:layout_constraintStart_toStartOf="parent"
@@ -29,6 +31,7 @@
         android:id="@+id/recovered_label"
         style="@style/TextLabelList"
         android:text="@string/recovered"
+        android:textColor="@color/dark_green"
         app:layout_constraintBaseline_toBaselineOf="@+id/active_label"
         app:layout_constraintLeft_toRightOf="@id/active_label"
         app:layout_constraintRight_toLeftOf="@id/new_label" />
@@ -37,6 +40,7 @@
         android:id="@+id/new_label"
         style="@style/TextLabelList"
         android:text="@string/new_cases"
+        android:textColor="@color/dark_blue"
         app:layout_constraintBaseline_toBaselineOf="@+id/active_label"
         app:layout_constraintLeft_toRightOf="@id/recovered_label"
         app:layout_constraintRight_toLeftOf="@id/deaths_label" />
@@ -46,6 +50,7 @@
         style="@style/TextLabelList"
         android:layout_marginEnd="8dp"
         android:text="@string/deaths"
+        android:textColor="@color/dark_yellow"
         app:layout_constraintBaseline_toBaselineOf="@+id/active_label"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toRightOf="@id/new_label" />

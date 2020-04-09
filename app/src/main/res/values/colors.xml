@@ -4,8 +4,8 @@
     <color name="colorPrimaryDark">#7c2a50</color>
     <color name="colorAccent">#b83560</color>
 
-    <color name="startGradientColor">#ED99B8</color>
-    <color name="endGradientColor">#FFFFFF</color>
+    <color name="startGradientColor">#FFCDD2</color>
+    <color name="endGradientColor">#FFF</color>
     <color name="colorGray">#646464</color>
 
     <color name="light_red">#FFCDD2</color>
@@ -17,10 +17,5 @@
     <color name="dark_green">#388E3C</color>
     <color name="dark_blue">#1976D2</color>
     <color name="dark_yellow">#FBC02D</color>
-
-    <!--color style var 2-->
-    <color name="colorPrimary2">#FFFFFF</color>
-    <color name="colorPrimaryDark2">#0E0E0E</color>
-    <color name="colorAccent2">#03DAC5</color>
 
 </resources>
