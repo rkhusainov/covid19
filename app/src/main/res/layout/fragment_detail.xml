@@ -12,14 +12,13 @@
         android:id="@+id/layout_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         android:padding="@dimen/dimen_4"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layout_confirmed"
             style="@style/LayoutStyle"
             android:layout_width="0dp"
@@ -31,12 +30,18 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
+                android:id="@+id/image_confirmed"
                 style="@style/ImageIcon"
-                android:layout_width="82sp"
-                android:layout_height="82sp"
+                android:layout_width="82dp"
+                android:layout_height="82dp"
                 android:contentDescription="@string/confirmed"
                 android:src="@drawable/ic_virus"
-                android:tint="@color/dark_red" />
+                android:tint="@color/dark_red"
+                app:layout_constraintBottom_toTopOf="@id/text_confirmed"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="packed" />
 
             <TextView
                 android:id="@+id/text_confirmed"
@@ -44,17 +49,26 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/dark_red"
+                app:layout_constraintBottom_toTopOf="@id/text_confirmed_label"
+                app:layout_constraintEnd_toEndOf="@+id/image_confirmed"
+                app:layout_constraintStart_toStartOf="@+id/image_confirmed"
+                app:layout_constraintTop_toBottomOf="@id/image_confirmed"
                 tools:text="1138" />
 
             <TextView
+                android:id="@+id/text_confirmed_label"
                 style="@style/TextTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/confirmed"
-                android:textColor="@color/dark_red" />
-        </LinearLayout>
+                android:textColor="@color/dark_red"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/text_confirmed"
+                app:layout_constraintStart_toStartOf="@+id/text_confirmed"
+                app:layout_constraintTop_toBottomOf="@id/text_confirmed" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layout_active"
             style="@style/LayoutStyle"
             android:layout_width="0dp"
@@ -66,12 +80,41 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
+                android:id="@+id/image_active"
                 style="@style/ImageIcon"
-                android:layout_width="82sp"
-                android:layout_height="82sp"
+                android:layout_width="82dp"
+                android:layout_height="82dp"
                 android:contentDescription="@string/active"
                 android:src="@drawable/ic_patient"
-                android:tint="@color/dark_blue" />
+                android:tint="@color/dark_blue"
+                app:layout_constraintBottom_toTopOf="@+id/text_active"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="packed" />
+
+            <ImageView
+                android:id="@+id/image_active_new"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="8dp"
+                android:contentDescription="@string/active"
+                android:src="@drawable/ic_trending_up"
+                android:tint="@color/dark_blue"
+                app:layout_constraintStart_toEndOf="@id/image_active"
+                app:layout_constraintTop_toTopOf="@+id/image_active" />
+
+            <TextView
+                android:id="@+id/text_active_new"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/dark_blue"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/image_active_new"
+                app:layout_constraintStart_toStartOf="@+id/image_active_new"
+                app:layout_constraintTop_toBottomOf="@id/image_active_new"
+                tools:text="+120" />
 
             <TextView
                 android:id="@+id/text_active"
@@ -79,18 +122,29 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/dark_blue"
+                app:layout_constraintBottom_toTopOf="@+id/textView"
+                app:layout_constraintEnd_toEndOf="@id/image_active"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="@id/image_active"
+                app:layout_constraintTop_toBottomOf="@+id/image_active"
                 tools:text="1138" />
 
             <TextView
+                android:id="@+id/textView"
                 style="@style/TextTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/active"
-                android:textColor="@color/dark_blue" />
+                android:textColor="@color/dark_blue"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/text_active"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="@+id/text_active"
+                app:layout_constraintTop_toBottomOf="@+id/text_active" />
 
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layout_recover"
             style="@style/LayoutStyle"
             android:layout_width="0dp"
@@ -102,12 +156,19 @@
             app:layout_constraintTop_toBottomOf="@+id/layout_confirmed">
 
             <ImageView
+                android:id="@+id/image_recovered"
                 style="@style/ImageIcon"
-                android:layout_width="82sp"
-                android:layout_height="82sp"
+                android:layout_width="82dp"
+                android:layout_height="82dp"
                 android:contentDescription="@string/recovered"
                 android:src="@drawable/ic_heart"
-                android:tint="@color/dark_green" />
+                android:tint="@color/dark_green"
+                app:layout_constraintBottom_toTopOf="@+id/text_recovered"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="packed" />
 
             <TextView
                 android:id="@+id/text_recovered"
@@ -115,17 +176,28 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/dark_green"
+                app:layout_constraintBottom_toTopOf="@+id/textView2"
+                app:layout_constraintEnd_toEndOf="@id/image_recovered"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="@id/image_recovered"
+                app:layout_constraintTop_toBottomOf="@+id/image_recovered"
                 tools:text="1138" />
 
             <TextView
+                android:id="@+id/textView2"
                 style="@style/TextTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/recovered"
-                android:textColor="@color/dark_green" />
-        </LinearLayout>
+                android:textColor="@color/dark_green"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/text_recovered"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="@id/text_recovered"
+                app:layout_constraintTop_toBottomOf="@+id/text_recovered" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layout_death"
             style="@style/LayoutStyle"
             android:layout_width="0dp"
@@ -137,12 +209,41 @@
             app:layout_constraintTop_toBottomOf="@+id/layout_active">
 
             <ImageView
+                android:id="@+id/image_deaths"
                 style="@style/ImageIcon"
-                android:layout_width="82sp"
-                android:layout_height="82sp"
+                android:layout_width="82dp"
+                android:layout_height="82dp"
                 android:contentDescription="@string/deaths"
                 android:src="@drawable/ic_death"
-                android:tint="@color/dark_yellow" />
+                android:tint="@color/dark_yellow"
+                app:layout_constraintBottom_toTopOf="@+id/text_deaths"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="packed" />
+
+            <ImageView
+                android:id="@+id/image_deaths_new"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="8dp"
+                android:contentDescription="@string/deaths"
+                android:src="@drawable/ic_trending_up"
+                android:tint="@color/dark_yellow"
+                app:layout_constraintStart_toEndOf="@id/image_deaths"
+                app:layout_constraintTop_toTopOf="@+id/image_deaths" />
+
+            <TextView
+                android:id="@+id/text_deaths_new"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/dark_yellow"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/image_deaths_new"
+                app:layout_constraintStart_toStartOf="@+id/image_deaths_new"
+                app:layout_constraintTop_toBottomOf="@id/image_deaths_new"
+                tools:text="+120" />
 
             <TextView
                 android:id="@+id/text_deaths"
@@ -150,15 +251,26 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/dark_yellow"
+                app:layout_constraintBottom_toTopOf="@+id/textView4"
+                app:layout_constraintEnd_toEndOf="@id/image_deaths"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="@id/image_deaths"
+                app:layout_constraintTop_toBottomOf="@+id/image_deaths"
                 tools:text="1138" />
 
             <TextView
+                android:id="@+id/textView4"
                 style="@style/TextTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/deaths"
-                android:textColor="@color/dark_yellow" />
-        </LinearLayout>
+                android:textColor="@color/dark_yellow"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/text_deaths"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="@id/text_deaths"
+                app:layout_constraintTop_toBottomOf="@+id/text_deaths" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

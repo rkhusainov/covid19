@@ -35,7 +35,7 @@ class StatisticsAdapter(private val countryClickListener: CountryClickListener) 
         holder.itemView.country_text.text = statItem.country
         holder.itemView.confirmed_text.text = statItem.cases?.total.toString()
         holder.itemView.recovered_text.text = statItem.cases?.recovered.toString()
-        holder.itemView.new_text.text = statItem.cases?.new
+        holder.itemView.active_text.text = statItem.cases?.active.toString()
         holder.itemView.deaths_text.text = statItem.deaths?.total.toString()
 
         holder.itemView.setOnClickListener {

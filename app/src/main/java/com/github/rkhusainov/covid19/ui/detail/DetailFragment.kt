@@ -50,8 +50,10 @@ class DetailFragment : Fragment() {
 
             text_confirmed.text = statistics.cases!!.total.toString()
             text_active.text = statistics.cases!!.active.toString()
+            text_active_new.text = statistics.cases!!.new
             text_recovered.text = statistics.cases!!.recovered.toString()
             text_deaths.text = statistics.deaths!!.total.toString()
+            text_deaths_new.text = statistics.deaths!!.new
         }
 
         button_chart.setOnClickListener {
