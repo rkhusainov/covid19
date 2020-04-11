@@ -1,7 +1,9 @@
 package com.github.rkhusainov.covid19.ui.statistics
 
+import android.content.ContentValues.TAG
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
@@ -81,10 +83,9 @@ class StatisticsFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                //
+                Log.d(TAG, "onQueryTextChange: $newText")
                 return false
             }
-
         })
     }
 
