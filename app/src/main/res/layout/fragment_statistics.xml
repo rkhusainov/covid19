@@ -1,13 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/swipeRefreshLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.statistics.StatisticsFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/statistics_recycler"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent">
 
-</FrameLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/statistics_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="visible" />
+
+        <include
+            layout="@layout/error_view"
+            android:visibility="gone" />
+
+    </FrameLayout>
+
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
