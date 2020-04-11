@@ -17,9 +17,9 @@ class StatisticsViewModel(private val repository: ICovidRepository) : ViewModel(
         viewModelScope.launch {
             _isLoadingData.value = true
             try {
-                _isNetworkError.value = false
                 val statistics = repository.getStatistics().response
                 _statisticsLiveData.value = statistics
+                _isNetworkError.value = false
             } catch (exception: Exception) {
                 _isNetworkError.value = true
             } finally {
