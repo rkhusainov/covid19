@@ -2,9 +2,8 @@ package com.github.rkhusainov.covid19.ui.statistics
 
 import android.content.Context
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -15,6 +14,7 @@ import com.github.rkhusainov.covid19.data.model.ResponseItem
 import com.github.rkhusainov.covid19.ui.contract.CountryClickListener
 import kotlinx.android.synthetic.main.error_view.*
 import kotlinx.android.synthetic.main.fragment_statistics.*
+import java.util.*
 
 class StatisticsFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
 
@@ -22,6 +22,8 @@ class StatisticsFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
     private lateinit var viewModel: StatisticsViewModel
     private lateinit var statisticsAdapter: StatisticsAdapter
     private lateinit var countryClickListener: CountryClickListener
+    private lateinit var statistics: List<ResponseItem>
+    private lateinit var filteredStatistics: ArrayList<ResponseItem>
 
     companion object {
         fun newInstance(): StatisticsFragment {
@@ -40,6 +42,7 @@ class StatisticsFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        setHasOptionsMenu(true)
         return inflater.inflate(R.layout.fragment_statistics, container, false)
     }
 
@@ -54,6 +57,35 @@ class StatisticsFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
         statistics_recycler.adapter = statisticsAdapter
 
         updateList()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.main_menu, menu)
+
+        val searchItem: MenuItem = menu.findItem(R.id.menu_item_search)
+        val searchView: SearchView = searchItem.actionView as SearchView
+
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                filteredStatistics = arrayListOf()
+                for (i in statistics.indices) {
+                    if (statistics[i].country!!.toLowerCase(Locale.ROOT)
+                            .contains(query.toString().toLowerCase(Locale.ROOT))
+                    ) {
+                        filteredStatistics.add(statistics[i])
+                    }
+                }
+                statisticsAdapter.bindData(filteredStatistics)
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                //
+                return false
+            }
+
+        })
     }
 
     override fun onStart() {
@@ -72,6 +104,7 @@ class StatisticsFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
                 statisticsAdapter.bindData(
                     statisticsList ?: emptyList()
                 )
+                statistics = statisticsList
             })
 
         viewModel.isNetworkError.observe(viewLifecycleOwner, Observer {
