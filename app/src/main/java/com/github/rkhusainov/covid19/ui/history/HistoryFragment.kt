@@ -10,16 +10,19 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.github.mikephil.charting.charts.LineChart
+import com.github.mikephil.charting.components.AxisBase
 import com.github.mikephil.charting.components.Legend
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.components.YAxis
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
+import com.github.mikephil.charting.formatter.ValueFormatter
 import com.github.mikephil.charting.utils.ColorTemplate
 import com.github.rkhusainov.covid19.R
 import com.github.rkhusainov.covid19.data.model.ResponseItem
 import com.github.rkhusainov.covid19.ui.statistics.CovidViewModelFactory
+import com.github.rkhusainov.covid19.utils.dateInFormat
 import kotlinx.android.synthetic.main.fragment_history.*
 
 
@@ -77,11 +80,16 @@ class HistoryFragment : Fragment() {
         chart.setTouchEnabled(true)
         chart.dragDecelerationFrictionCoef = 0.9f
 
+        // отступы диаграммы
+        // в данном случае сделали отступ снизу для увеличения расстояния легенды от графика
+        chart.setExtraOffsets(0f, 0f, 0f, 20f)
+
         // включить масштабирование и перемещение
         chart.isDragEnabled = true
         chart.setScaleEnabled(true)
         chart.setDrawGridBackground(false)
         chart.isHighlightPerDragEnabled = true
+        chart.isAutoScaleMinMaxEnabled = true
 
         // если отключено, масштабирование может быть выполнено по осям x и y
         chart.setPinchZoom(false)
@@ -96,15 +104,17 @@ class HistoryFragment : Fragment() {
         val l: Legend = chart.legend
 
         // настройка легенды (ярлыков значений)
-        l.form = Legend.LegendForm.LINE
+        l.form = Legend.LegendForm.SQUARE
         l.typeface = Typeface.DEFAULT
-        l.textSize = 11f
+        l.textSize = 14f
         l.textColor = Color.BLACK
         l.verticalAlignment = Legend.LegendVerticalAlignment.BOTTOM
         l.horizontalAlignment = Legend.LegendHorizontalAlignment.LEFT
         l.orientation = Legend.LegendOrientation.HORIZONTAL
         l.setDrawInside(false)
-        l.yOffset = 11f
+        l.yOffset = 20f
+        l.yEntrySpace = 30f
+        l.xEntrySpace = 30f
 
         // настройка оси X
         val xAxis: XAxis = chart.xAxis
@@ -112,24 +122,28 @@ class HistoryFragment : Fragment() {
         xAxis.position = XAxis.XAxisPosition.BOTTOM
         xAxis.textSize = 11f
         xAxis.textColor = Color.BLACK
-        xAxis.setDrawGridLines(false)
-        xAxis.setDrawAxisLine(false)
+        xAxis.setDrawGridLines(true)
+        xAxis.setDrawAxisLine(true)
+        xAxis.valueFormatter = DataXAxisValueFormatter(countryHistory)
+        xAxis.labelRotationAngle = -45f
+        xAxis.labelCount = 5
 
         // настройка оси Y слева
         val leftAxis: YAxis = chart.axisLeft
         leftAxis.typeface = Typeface.DEFAULT
         leftAxis.textColor = ColorTemplate.getHoloBlue()
-        leftAxis.axisMaximum = 500000f
+        // leftAxis.axisMaximum = 500000f        //default autosize
         leftAxis.axisMinimum = 0f
         leftAxis.labelCount = 5
+        leftAxis.setDrawAxisLine(true)
         leftAxis.setDrawGridLines(true)
-        leftAxis.isGranularityEnabled = true
+        leftAxis.isGranularityEnabled = false
 
         // настройка оси Y справа
         val rightAxis: YAxis = chart.axisRight
         rightAxis.typeface = Typeface.DEFAULT
         rightAxis.textColor = Color.RED
-        rightAxis.axisMaximum = 500000f
+        // rightAxis.axisMaximum = 500000f      //default autosize
         rightAxis.axisMinimum = 0f
         rightAxis.labelCount = 5
         rightAxis.setDrawGridLines(false)
@@ -162,6 +176,7 @@ class HistoryFragment : Fragment() {
         val data = LineData(activeSet)
         data.setValueTextColor(Color.BLACK)
         data.setValueTextSize(9f)
+        data.setValueFormatter(DataXAxisValueFormatter())
 
         // установка данных
         chart.data = data
@@ -175,8 +190,8 @@ class HistoryFragment : Fragment() {
         var history = countryHistory
         val calculatedStep = 1
 
-        // переворачиваем массив, чтобы последние данные были в конце,
-        // далее убираем дубликаты по дню
+        //  убираем дубликаты по дню,
+        // далее переворачиваем массив, чтобы последние данные были в конце
         history = history.distinctBy { it.day }.reversed()
 
         for (i in history.indices step calculatedStep) {
@@ -185,3 +200,29 @@ class HistoryFragment : Fragment() {
         return entries
     }
 }
+
+class DataXAxisValueFormatter() : ValueFormatter() {
+    private var history = listOf<ResponseItem>()
+
+    constructor(historyList: List<ResponseItem>) : this() {
+        history = historyList
+        history = history.distinctBy { it.day }.reversed()
+    }
+
+    override fun getFormattedValue(value: Float): String {
+        return formatValue(value.toInt())
+    }
+
+
+    override fun getAxisLabel(value: Float, axis: AxisBase?): String {
+        return history[value.toInt()].day!!.dateInFormat("dd.MM.yyyy")!!
+    }
+
+    /**
+     * Метод для форматирования значения в формате "1 000"
+     */
+    private fun formatValue(value: Int): String {
+        return String.format("%,d", value)
+    }
+}
+

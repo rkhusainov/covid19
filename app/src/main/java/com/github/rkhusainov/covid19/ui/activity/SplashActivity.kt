@@ -11,7 +11,7 @@ import com.github.rkhusainov.covid19.R
 class SplashActivity : AppCompatActivity() {
 
     companion object {
-        private const val MILLIS = 1700
+        private const val MILLIS = 2000
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
