@@ -1,4 +1,4 @@
-package com.github.rkhusainov.covid19.ui.statistics
+package com.github.rkhusainov.covid19.ui.activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -9,6 +9,7 @@ import com.github.rkhusainov.covid19.ui.contract.HistoryClickListener
 import com.github.rkhusainov.covid19.ui.detail.DetailFragment
 import com.github.rkhusainov.covid19.ui.detail.PieChartFragment
 import com.github.rkhusainov.covid19.ui.history.HistoryFragment
+import com.github.rkhusainov.covid19.ui.statistics.StatisticsFragment
 
 class MainActivity : AppCompatActivity(), CountryClickListener, HistoryClickListener {
 
@@ -19,7 +20,9 @@ class MainActivity : AppCompatActivity(), CountryClickListener, HistoryClickList
         if (savedInstanceState == null) {
             supportFragmentManager
                 .beginTransaction()
-                .add(R.id.fragment_container, StatisticsFragment.newInstance())
+                .add(R.id.fragment_container,
+                    StatisticsFragment.newInstance()
+                )
                 .commit()
         }
     }

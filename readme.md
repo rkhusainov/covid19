@@ -10,7 +10,9 @@
   - LiveData - Data objects that notify views when the underlying database changes.
   - ViewModel - Stores UI-related data that isn't destroyed on UI changes.
 - Retrofit - A type-safe HTTP client for Android and Java.
-- Material Components for Android - Modular and customizable Material Design UI components for Android
+- Material Components for Android - Modular and customizable Material Design UI components for Android.
+- MPAndroidChart - The library for charts.
+- MotionLayout - A layout type that helps you manage motion and widget animation in your app.
 
 ## Credits
 Thanks to [covid19-api](https://covid19-api.com) for open-source API.
