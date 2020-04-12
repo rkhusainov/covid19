@@ -1,7 +1,27 @@
+<p align="center">
+  <img src="art/icon.png" height="200"/>
+</p>
+
 # Covid19
 
-## About
-**Covid19** is a sample Android app for practicing use of *Android development* tools.
+**Covid19** is a sample Android app to practice using *Android development* tools.
+
+<table style="width:100%">
+  <tr>
+    <th>List screen with statistics</th>
+    <th>Detail Screen with current data</th>
+    <th>Pie chart with current data</th>
+    <th>Line chart with history value</th>
+    <th>Search by country name</th>
+  </tr>
+  <tr>
+    <td><img src="art/statistics.jpg"/></td>
+    <td><img src="art/detail.jpg"/></td>
+    <td><img src="art/pie_chart.jpg"/></td>
+    <td><img src="art/line_chart.jpg"/></td>
+    <td><img src="art/search.jpg"/></td>
+  </tr>
+</table>
 
 ## Built with
 - Kotlin - Official programming language for Android development.
