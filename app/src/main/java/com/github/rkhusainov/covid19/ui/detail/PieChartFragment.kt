@@ -63,12 +63,10 @@ class PieChartFragment : Fragment() {
             statistics = arguments!!.getParcelable(BUNDLE_KEY)!!
             country_text.text = statistics.country
         }
-
         setupPieChart()
     }
 
     private fun setupPieChart() {
-
         chart.setUsePercentValues(false)                             // значения в процентах?
         chart.description.isEnabled = false                          // показать описание?
         chart.setExtraOffsets(5f, 0f, 5f, 5f)  // положение диаграммы
@@ -76,19 +74,19 @@ class PieChartFragment : Fragment() {
         chart.dragDecelerationFrictionCoef = 0.95f                   // кожффициент трения анимации
 
         chart.setDrawCenterText(true)                                // показать текст по середине?
-        chart.centerText = generateCenterSpannableText()            // установить текст по середине
-        chart.setCenterTextTypeface(Typeface.SANS_SERIF)            // шрифт текста по середине
+        chart.centerText = generateCenterSpannableText()             // установить текст по середине
+        chart.setCenterTextTypeface(Typeface.SANS_SERIF)             // шрифт текста по середине
 
         chart.isDrawHoleEnabled = true           // нарисовать отверстие по середине?
         chart.setHoleColor(Color.WHITE)          // цвет отверстия по середине
-        chart.holeRadius = 48f                  // радиус отверстия в середине диаграммы
-        chart.transparentCircleRadius = 61f     // радиус прозрачного круга
+        chart.holeRadius = 48f                   // радиус отверстия в середине диаграммы
+        chart.transparentCircleRadius = 61f      // радиус прозрачного круга
 
-        chart.rotationAngle = 0f                // угол поворота диаграммы в градусах
-        chart.isRotationEnabled = true          // разрешить поворот диаграммы при касании?
-        chart.isHighlightPerTapEnabled = true   // разрешить выделение секции при касании?
+        chart.rotationAngle = 0f                 // угол поворота диаграммы в градусах
+        chart.isRotationEnabled = true           // разрешить поворот диаграммы при касании?
+        chart.isHighlightPerTapEnabled = true    // разрешить выделение секции при касании?
 
-        chart.animateY(1400)        // анимация отрисовки
+        chart.animateY(1400)         // анимация отрисовки
 
         // настройка легенды (ярлыков значений)
         val l: Legend = chart.legend
@@ -107,18 +105,18 @@ class PieChartFragment : Fragment() {
 
         // установка данных
         val dataSet = PieDataSet(pieData(), getString(R.string.covid19_chart))
-        //dataSet.colors = ColorTemplate.COLORFUL_COLORS.toList()
+        //dataSet.colors = ColorTemplate.COLORFUL_COLORS.toList() // предустановленные цвета
         dataSet.colors = chartColors
         dataSet.setDrawIcons(false)
-        dataSet.sliceSpace = 3f
+        dataSet.sliceSpace = 2f                            // расстояние между секциями
         dataSet.iconsOffset = MPPointF(0f, 40f)
-        dataSet.selectionShift = 20f
+        dataSet.selectionShift = 20f                       // расстояние выделения секции
 
         val data = PieData(dataSet)
-        //data.setValueFormatter(PercentFormatter(chart))  // формат значений
-        data.setValueTextSize(12f)                       // размер текста значений
-        data.setValueTextColor(Color.BLACK)             // цвет текста значений
-        data.setValueTypeface(Typeface.DEFAULT)         // шрифт текста значений
+        //data.setValueFormatter(PercentFormatter(chart))  // формат значений в процентах
+        data.setValueTextSize(12f)                         // размер текста значений
+        data.setValueTextColor(Color.BLACK)                // цвет текста значений
+        data.setValueTypeface(Typeface.DEFAULT)            // шрифт текста значений
         chart.data = data
 
         // перерисовать
@@ -133,12 +131,15 @@ class PieChartFragment : Fragment() {
         return entries
     }
 
+    /**
+     * Метод для spannable текста в середине диаграммы
+     */
     private fun generateCenterSpannableText(): SpannableString? {
         val s = SpannableString(getString(R.string.covid19_chart_spannable))
-        s.setSpan(RelativeSizeSpan(1.7f), 0, 14, 0)
-        s.setSpan(StyleSpan(Typeface.NORMAL), 14, s.length - 15, 0)
-        s.setSpan(ForegroundColorSpan(Color.GRAY), 14, s.length - 15, 0)
-        s.setSpan(RelativeSizeSpan(.8f), 14, s.length - 15, 0)
+        s.setSpan(RelativeSizeSpan(1.7f), 0, 13, 0)
+        s.setSpan(StyleSpan(Typeface.NORMAL), 13, s.length - 15, 0)
+        s.setSpan(ForegroundColorSpan(Color.GRAY), 13, s.length - 15, 0)
+        s.setSpan(RelativeSizeSpan(.8f), 13, s.length - 15, 0)
         s.setSpan(StyleSpan(Typeface.ITALIC), s.length - 15, s.length, 0)
         s.setSpan(ForegroundColorSpan(ColorTemplate.getHoloBlue()), s.length - 15, s.length, 0)
         return s

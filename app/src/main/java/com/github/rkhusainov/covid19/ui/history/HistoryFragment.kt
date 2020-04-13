@@ -81,7 +81,7 @@ class HistoryFragment : Fragment() {
         chart.dragDecelerationFrictionCoef = 0.9f
 
         // отступы диаграммы
-        // в данном случае сделали отступ снизу для увеличения расстояния легенды от графика
+        // сделали отступ снизу для увеличения расстояния легенды от графика
         chart.setExtraOffsets(0f, 0f, 0f, 20f)
 
         // включить масштабирование и перемещение
@@ -100,10 +100,8 @@ class HistoryFragment : Fragment() {
         // анимация отрисовки
         chart.animateX(1500)
 
-        // получить легенду (возможно только после настройки данных)
-        val l: Legend = chart.legend
-
         // настройка легенды (ярлыков значений)
+        val l: Legend = chart.legend
         l.form = Legend.LegendForm.SQUARE
         l.typeface = Typeface.DEFAULT
         l.textSize = 14f
@@ -132,7 +130,7 @@ class HistoryFragment : Fragment() {
         val leftAxis: YAxis = chart.axisLeft
         leftAxis.typeface = Typeface.DEFAULT
         leftAxis.textColor = ColorTemplate.getHoloBlue()
-        // leftAxis.axisMaximum = 500000f        //default autosize
+        // leftAxis.axisMaximum = 500000f           //default autosize
         leftAxis.axisMinimum = 0f
         leftAxis.labelCount = 5
         leftAxis.setDrawAxisLine(true)
@@ -143,7 +141,7 @@ class HistoryFragment : Fragment() {
         val rightAxis: YAxis = chart.axisRight
         rightAxis.typeface = Typeface.DEFAULT
         rightAxis.textColor = Color.RED
-        // rightAxis.axisMaximum = 500000f      //default autosize
+        // rightAxis.axisMaximum = 500000f          //default autosize
         rightAxis.axisMinimum = 0f
         rightAxis.labelCount = 5
         rightAxis.setDrawGridLines(false)
@@ -174,6 +172,7 @@ class HistoryFragment : Fragment() {
         activeSet.circleHoleRadius = 1f
 
         val data = LineData(activeSet)
+        // настройка значений графика
         data.setValueTextColor(Color.BLACK)
         data.setValueTextSize(9f)
         data.setValueFormatter(DataXAxisValueFormatter())
@@ -201,6 +200,9 @@ class HistoryFragment : Fragment() {
     }
 }
 
+/**
+ * Класс для форматирования значений и ярлыков
+ */
 class DataXAxisValueFormatter() : ValueFormatter() {
     private var history = listOf<ResponseItem>()
 
@@ -209,17 +211,22 @@ class DataXAxisValueFormatter() : ValueFormatter() {
         history = history.distinctBy { it.day }.reversed()
     }
 
+    /**
+     * Метод для форматирования значений графика
+     */
     override fun getFormattedValue(value: Float): String {
         return formatValue(value.toInt())
     }
 
-
+    /**
+     * Метод для форматирования значений на осях
+     */
     override fun getAxisLabel(value: Float, axis: AxisBase?): String {
         return history[value.toInt()].day!!.dateInFormat("dd.MM.yyyy")!!
     }
 
     /**
-     * Метод для форматирования значения в формате "1 000"
+     * Метод для форматирования значения с выделением тысяч "1 000"
      */
     private fun formatValue(value: Int): String {
         return String.format("%,d", value)

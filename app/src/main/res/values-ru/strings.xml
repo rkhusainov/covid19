@@ -7,7 +7,7 @@
     <string name="deaths">Умерло</string>
     <string name="new_cases">За сутки</string>
     <string name="covid19_chart">COVID-19 chart</string>
-    <string name="covid19_chart_spannable">"Covid-19 Chart\ndeveloped by Rinat Khusainov"</string>
+    <string name="covid19_chart_spannable">"COVID-19 App\ndeveloped by Rinat Khusainov"</string>
     <string name="history">История</string>
     <string name="network_error">Ошибка сети. Проверьте подключение к интернету.</string>
     <string name="search">поиск</string>

@@ -33,6 +33,7 @@
 - Material Components for Android - Modular and customizable Material Design UI components for Android.
 - MPAndroidChart - The library for charts.
 - MotionLayout - A layout type that helps you manage motion and widget animation in your app.
+- Lottie animation.
 
 ## Credits
 Thanks to [covid19-api](https://covid19-api.com) for open-source API.
