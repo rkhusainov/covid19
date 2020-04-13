@@ -38,8 +38,7 @@
     </style>
 
     <style name="TextCount">
-        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Headline5
-        </item>
+        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Headline5</item>
         <item name="android:textColor">@android:color/white</item>
         <item name="android:textStyle">bold</item>
         <item name="android:layout_gravity">center</item>
