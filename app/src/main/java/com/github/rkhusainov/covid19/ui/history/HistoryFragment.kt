@@ -98,7 +98,7 @@ class HistoryFragment : Fragment() {
         chart.setBackgroundColor(Color.WHITE)
 
         // анимация отрисовки
-        chart.animateX(1500)
+        chart.animateX(1000)
 
         // настройка легенды (ярлыков значений)
         val l: Legend = chart.legend

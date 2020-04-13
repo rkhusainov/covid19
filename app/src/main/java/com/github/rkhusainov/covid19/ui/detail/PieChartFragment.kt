@@ -86,7 +86,7 @@ class PieChartFragment : Fragment() {
         chart.isRotationEnabled = true           // разрешить поворот диаграммы при касании?
         chart.isHighlightPerTapEnabled = true    // разрешить выделение секции при касании?
 
-        chart.animateY(1400)         // анимация отрисовки
+        chart.animateY(700)         // анимация отрисовки
 
         // настройка легенды (ярлыков значений)
         val l: Legend = chart.legend

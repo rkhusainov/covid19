@@ -6,6 +6,10 @@
 
 **Covid19** is a sample Android app to practice using *Android development* tools.
 
+***Install and test latest Covid19 app from below 👇***
+
+[![Covid19 App](https://img.shields.io/badge/Covid19-APK-blue.svg?style=for-the-badge&logo=android)](https://github.com/rkhusainov/Covid19/releases/download/v1.0/app-debug.apk)
+
 <table style="width:100%">
   <tr>
     <th>List screen with statistics</th>
