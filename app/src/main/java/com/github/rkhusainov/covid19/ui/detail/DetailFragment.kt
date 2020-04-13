@@ -54,6 +54,15 @@ class DetailFragment : Fragment() {
             text_recovered.text = statistics.cases!!.recovered.toString()
             text_deaths.text = statistics.deaths!!.total.toString()
             text_deaths_new.text = statistics.deaths!!.new
+
+            // если пусто, скрываем иконку
+            if (statistics.cases!!.new == null) {
+                image_active_new.visibility = View.INVISIBLE
+            }
+
+            if (statistics.deaths!!.new == null) {
+                image_deaths_new.visibility = View.INVISIBLE
+            }
         }
 
         button_chart.setOnClickListener {
