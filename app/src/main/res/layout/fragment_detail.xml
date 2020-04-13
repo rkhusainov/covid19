@@ -32,8 +32,8 @@
             <ImageView
                 android:id="@+id/image_confirmed"
                 style="@style/ImageIcon"
-                android:layout_width="82dp"
-                android:layout_height="82dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:contentDescription="@string/confirmed"
                 android:src="@drawable/ic_virus"
                 android:tint="@color/dark_red"
@@ -82,8 +82,8 @@
             <ImageView
                 android:id="@+id/image_active"
                 style="@style/ImageIcon"
-                android:layout_width="82dp"
-                android:layout_height="82dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:contentDescription="@string/active"
                 android:src="@drawable/ic_patient"
                 android:tint="@color/dark_blue"
@@ -96,8 +96,8 @@
 
             <ImageView
                 android:id="@+id/image_active_new"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:layout_marginStart="8dp"
                 android:contentDescription="@string/active"
                 android:src="@drawable/ic_trending_up"
@@ -111,6 +111,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/dark_blue"
                 android:textStyle="bold"
+                android:textSize="@dimen/sp_12"
                 app:layout_constraintEnd_toEndOf="@+id/image_active_new"
                 app:layout_constraintStart_toStartOf="@+id/image_active_new"
                 app:layout_constraintTop_toBottomOf="@id/image_active_new"
@@ -158,8 +159,8 @@
             <ImageView
                 android:id="@+id/image_recovered"
                 style="@style/ImageIcon"
-                android:layout_width="82dp"
-                android:layout_height="82dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:contentDescription="@string/recovered"
                 android:src="@drawable/ic_heart"
                 android:tint="@color/dark_green"
@@ -211,8 +212,8 @@
             <ImageView
                 android:id="@+id/image_deaths"
                 style="@style/ImageIcon"
-                android:layout_width="82dp"
-                android:layout_height="82dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:contentDescription="@string/deaths"
                 android:src="@drawable/ic_death"
                 android:tint="@color/dark_yellow"
@@ -225,8 +226,8 @@
 
             <ImageView
                 android:id="@+id/image_deaths_new"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:layout_marginStart="8dp"
                 android:contentDescription="@string/deaths"
                 android:src="@drawable/ic_trending_up"
@@ -240,6 +241,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/dark_yellow"
                 android:textStyle="bold"
+                android:textSize="@dimen/sp_12"
                 app:layout_constraintEnd_toEndOf="@+id/image_deaths_new"
                 app:layout_constraintStart_toStartOf="@+id/image_deaths_new"
                 app:layout_constraintTop_toBottomOf="@id/image_deaths_new"

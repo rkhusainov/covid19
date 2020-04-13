@@ -20,13 +20,14 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">@color/colorGray</item>
+        <item name="android:textSize">@dimen/sp_12</item>
         <item name="android:textStyle">normal</item>
     </style>
 
 
     <style name="TextTitle">
         <item name="android:layout_gravity">center</item>
-        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Headline6
+        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Body1
         </item>
         <item name="android:textColor">@android:color/white</item>
     </style>
@@ -37,7 +38,7 @@
     </style>
 
     <style name="TextCount">
-        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Headline3
+        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Headline5
         </item>
         <item name="android:textColor">@android:color/white</item>
         <item name="android:textStyle">bold</item>
