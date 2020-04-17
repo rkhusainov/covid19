@@ -12,4 +12,11 @@
     <string name="network_error">Ошибка сети. Проверьте подключение к интернету.</string>
     <string name="search">поиск</string>
 
+    <string-array name="sort_items">
+        <item>Подтверждено</item>
+        <item>Инфицировано</item>
+        <item>Выздоровело</item>
+        <item>Умерло</item>
+    </string-array>
+
 </resources>

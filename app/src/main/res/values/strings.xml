@@ -12,4 +12,11 @@
     <string name="network_error">Network error. Check your internet connection.</string>
     <string name="search">search</string>
 
+    <string-array name="sort_items">
+        <item>Confirmed</item>
+        <item>Active</item>
+        <item>Recovered</item>
+        <item>Deaths</item>
+    </string-array>
+
 </resources>

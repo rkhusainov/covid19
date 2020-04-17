@@ -13,6 +13,10 @@ class StatisticsViewModel(private val repository: ICovidRepository) : ViewModel(
     private val _isLoadingData = MutableLiveData(false)
     private val _statisticsLiveData = MutableLiveData<List<ResponseItem>>()
 
+    init {
+        getStatistics()
+    }
+
     fun getStatistics() {
         viewModelScope.launch {
             _isLoadingData.value = true

@@ -5,6 +5,9 @@ import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.*
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.Spinner
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -25,9 +28,11 @@ class StatisticsFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
     private lateinit var statisticsAdapter: StatisticsAdapter
     private lateinit var countryClickListener: CountryClickListener
     private lateinit var statistics: List<ResponseItem>
-    private lateinit var filteredStatistics: ArrayList<ResponseItem>
+    private lateinit var sortingSpinner: Spinner
+    private var spinnerPosition = 0
 
     companion object {
+        private const val SPINNER_POSITION = "SPINNER_POSITION"
         fun newInstance(): StatisticsFragment {
             return StatisticsFragment()
         }
@@ -44,12 +49,19 @@ class StatisticsFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val view: View = inflater.inflate(R.layout.fragment_statistics, container, false)
+        sortingSpinner = view.findViewById(R.id.sorting_spinner)
         setHasOptionsMenu(true)
-        return inflater.inflate(R.layout.fragment_statistics, container, false)
+        return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        if (savedInstanceState != null) {
+            spinnerPosition = savedInstanceState.getInt(SPINNER_POSITION)
+            sortingSpinner.setSelection(savedInstanceState.getInt(SPINNER_POSITION))
+        }
 
         swipeRefreshLayout.setOnRefreshListener(this)
 
@@ -57,8 +69,6 @@ class StatisticsFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
         statistics_recycler.layoutManager = LinearLayoutManager(context)
         statisticsAdapter = StatisticsAdapter(countryClickListener)
         statistics_recycler.adapter = statisticsAdapter
-
-        updateList()
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -70,7 +80,7 @@ class StatisticsFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
-                filteredStatistics = arrayListOf()
+                val filteredStatistics: ArrayList<ResponseItem> = arrayListOf()
                 for (i in statistics.indices) {
                     if (statistics[i].country!!.toLowerCase(Locale.ROOT)
                             .contains(query.toString().toLowerCase(Locale.ROOT))
@@ -78,7 +88,8 @@ class StatisticsFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
                         filteredStatistics.add(statistics[i])
                     }
                 }
-                statisticsAdapter.bindData(filteredStatistics)
+                statistics = filteredStatistics
+                statisticsAdapter.bindData(statistics)
                 return true
             }
 
@@ -89,9 +100,9 @@ class StatisticsFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
         })
     }
 
-    override fun onStart() {
-        super.onStart()
-        viewModel.getStatistics()
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putInt(SPINNER_POSITION, sortingSpinner.selectedItemPosition)
     }
 
     private fun setupMVVM() {
@@ -102,10 +113,8 @@ class StatisticsFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
         )
         viewModel.statisticsLiveData.observe(viewLifecycleOwner,
             Observer<List<ResponseItem>> { statisticsList ->
-                statisticsAdapter.bindData(
-                    statisticsList ?: emptyList()
-                )
                 statistics = statisticsList
+                initSpinner()
             })
 
         viewModel.isNetworkError.observe(viewLifecycleOwner, Observer {
@@ -121,13 +130,46 @@ class StatisticsFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
         viewModel.isLoadingData.observe(viewLifecycleOwner, Observer {
             swipeRefreshLayout.isRefreshing = it
         })
+
     }
 
-    private fun updateList() {
-        viewModel.getStatistics()
+    private fun initSpinner() {
+        val adapter: ArrayAdapter<*> = ArrayAdapter.createFromResource(
+            context!!,
+            R.array.sort_items,
+            android.R.layout.simple_spinner_item
+        )
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        sortingSpinner.adapter = adapter
+        sortingSpinner.setSelection(spinnerPosition)
+
+        sorting_spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                when (position) {
+                    0 -> statistics = statistics.sortedBy { it.cases!!.total }.reversed()
+                    1 -> statistics = statistics.sortedBy { it.cases!!.active }.reversed()
+                    2 -> statistics = statistics.sortedBy { it.cases!!.recovered }.reversed()
+                    3 -> statistics = statistics.sortedBy { it.deaths!!.total }.reversed()
+                }
+                statisticsAdapter.bindData(statistics)
+                spinnerPosition = sortingSpinner.selectedItemPosition
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+            }
+        }
     }
 
     override fun onRefresh() {
         updateList()
+    }
+
+    private fun updateList() {
+        viewModel.getStatistics()
     }
 }
