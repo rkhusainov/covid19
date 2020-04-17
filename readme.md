@@ -40,4 +40,4 @@
 - Lottie animation.
 
 ## Credits
-Thanks to [covid19-api](https://covid19-api.com) for open-source API.
+Thanks to [COVID-19](https://rapidapi.com/api-sports/api/covid-193) for open-source API.
